@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-28",
+  "name": "Vendor Security Posture",
+  "domain": "Risk",
+  "owner": "Risk Platform",
+  "usageFrequency": 0,
+  "description": "Tracks vendor security assessment scores, risk tiers, and assessment recency. Supports third-party risk management."
+}

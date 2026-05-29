@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-09",
+  "name": "Revenue Trend Analytics",
+  "domain": "Finance",
+  "owner": "Finance Platform",
+  "usageFrequency": 0,
+  "description": "Monthly revenue trend analysis segmented by product category. Tracks order volume, customer counts, and average order value to identify growth drivers."
+}

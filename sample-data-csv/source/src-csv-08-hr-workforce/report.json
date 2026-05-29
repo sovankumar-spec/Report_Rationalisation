@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-08",
+  "name": "HR Workforce Analytics",
+  "domain": "Human Resources",
+  "owner": "People Analytics",
+  "usageFrequency": 17,
+  "description": "Active headcount, average employee tenure, new hire volume, and attrition risk score by department and cost center. Used for workforce planning."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-03-regional-sales-analysis",
+  "name": "Regional Sales Analysis",
+  "domain": "Sales",
+  "owner": "Sam Patel",
+  "description": "PowerBI report tracking regional quota attainment, territory count, and revenue split by geography. Uses region and territory dimensions not modelled in the Looker Sales Analytics reference — migration required to build regional coverage.",
+  "usageFrequency": 7,
+  "platform": "PowerBI"
+}

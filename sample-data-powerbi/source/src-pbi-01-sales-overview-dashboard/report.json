@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-01-sales-overview-dashboard",
+  "name": "Sales Overview Dashboard",
+  "domain": "Sales",
+  "owner": "Alex Torres",
+  "description": "Executive PowerBI dashboard providing a top-level view of revenue, pipeline, deal velocity, win rate and quota attainment. Built on the same fact_sales grain as the Looker reference; a strong rationalization candidate.",
+  "usageFrequency": 18,
+  "platform": "PowerBI"
+}

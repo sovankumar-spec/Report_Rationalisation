@@ -1,0 +1,8 @@
+{
+  "id": "tgt-csv-A",
+  "name": "Customer Billing Analytics",
+  "domain": "Finance",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 74,
+  "description": "Reference billing KPI platform. Covers total revenue, average revenue, customer count, discounts, and net revenue by segment and period."
+}

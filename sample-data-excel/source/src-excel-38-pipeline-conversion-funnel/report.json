@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-38",
+  "name": "Pipeline Conversion Funnel",
+  "domain": "Sales",
+  "owner": "Sales Leadership",
+  "usageFrequency": 63,
+  "description": "Shows opportunity counts, pipeline value, and probability at each stage. Standard funnel view used by sales leadership for forecasting and stage-level conversion analysis."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-07",
+  "name": "Cost Allocation Audit",
+  "domain": "Finance",
+  "owner": "Finance Platform",
+  "usageFrequency": 0,
+  "description": "Audits cost allocation entries across cost centers and GL accounts. Summarizes allocation frequency and total amounts for financial review."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-05",
+  "name": "Network Site Performance",
+  "domain": "Network Operations",
+  "owner": "NOC Engineering",
+  "usageFrequency": 55,
+  "description": "Site-level network KPIs: latency, packet loss, uptime, and peak throughput. Feeds SLA compliance dashboards and capacity planning."
+}

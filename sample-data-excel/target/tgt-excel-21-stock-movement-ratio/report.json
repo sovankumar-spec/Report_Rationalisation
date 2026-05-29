@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-21",
+  "name": "Stock Movement Ratio",
+  "domain": "Operations",
+  "owner": "Operations Platform",
+  "usageFrequency": 0,
+  "description": "Calculates inventory turnover via average inventory value and COGS by product category. Supports working capital and supply chain analysis."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-07",
+  "name": "Cash Flow Forecast",
+  "domain": "Finance",
+  "owner": "Treasury",
+  "usageFrequency": 29,
+  "description": "Projects weekly cash inflows, outflows, and net position from multiple forecast sources. Enables treasury to anticipate liquidity needs."
+}

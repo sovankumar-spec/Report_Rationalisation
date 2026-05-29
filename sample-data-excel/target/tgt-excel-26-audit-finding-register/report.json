@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-26",
+  "name": "Audit Finding Register",
+  "domain": "Risk",
+  "owner": "Risk Platform",
+  "usageFrequency": 0,
+  "description": "Compliance audit findings summarized by category. Tracks open findings and average remediation days."
+}

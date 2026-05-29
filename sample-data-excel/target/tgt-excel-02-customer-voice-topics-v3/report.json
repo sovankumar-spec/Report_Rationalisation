@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-02",
+  "name": "Customer Voice Topics V3",
+  "domain": "Customer Service",
+  "owner": "CX Analytics",
+  "usageFrequency": 0,
+  "description": "Aggregates customer feedback mentions by topic and sentiment category. Surfaces recurring themes and sentiment patterns from voice analytics data."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-csv-E",
+  "name": "Marketing Campaign Analytics",
+  "domain": "Marketing",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 52,
+  "description": "Reference marketing performance platform. Covers campaign count, impressions, click rate, conversion rate, cost per acquisition, and return on ad spend."
+}

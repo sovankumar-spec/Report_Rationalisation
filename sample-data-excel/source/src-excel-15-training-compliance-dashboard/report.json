@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-15",
+  "name": "Training Compliance Dashboard",
+  "domain": "Human Resources",
+  "owner": "L&D Compliance",
+  "usageFrequency": 33,
+  "description": "Measures enrollment and completion of training courses, particularly mandatory programs. Helps HR and compliance track completion rates."
+}

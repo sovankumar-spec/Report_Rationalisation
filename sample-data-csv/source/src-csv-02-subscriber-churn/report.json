@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-02",
+  "name": "Subscriber Churn Report",
+  "domain": "Customer Success",
+  "owner": "Retention Analytics",
+  "usageFrequency": 31,
+  "description": "Monthly churn events, average tenure at churn, and new subscriber intake. Primary input to retention modeling."
+}

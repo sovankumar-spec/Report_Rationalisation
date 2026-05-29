@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-03",
+  "name": "Self Service Usage",
+  "domain": "Customer Service",
+  "owner": "Support Analytics",
+  "usageFrequency": 18,
+  "description": "Measures knowledge base article engagement and whether customers still ended up filing a ticket. Highlights content effectiveness via deflection rates."
+}

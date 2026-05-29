@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-04-pl-dashboard",
+  "name": "P&L Dashboard",
+  "domain": "Finance",
+  "owner": "Rachel Stone",
+  "description": "PowerBI Profit & Loss dashboard covering revenue, expenses, gross profit, net income, budget variance and operating margin. Identical KPI set and schema to the Looker Finance Hub — prime rationalization target.",
+  "usageFrequency": 22,
+  "platform": "PowerBI"
+}

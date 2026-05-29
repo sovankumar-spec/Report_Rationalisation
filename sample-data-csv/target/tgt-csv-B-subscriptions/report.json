@@ -1,0 +1,8 @@
+{
+  "id": "tgt-csv-B",
+  "name": "Subscriber Lifecycle Dashboard",
+  "domain": "Customer Success",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 61,
+  "description": "Reference subscriber lifecycle platform. Tracks churn volume, average churn tenure, new subscriber acquisition, MRR, and reactivations."
+}

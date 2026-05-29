@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-08",
+  "name": "Cost Allocation Audit V2",
+  "domain": "Finance",
+  "owner": "Finance Platform",
+  "usageFrequency": 0,
+  "description": "Version 2 of the cost allocation audit. Provides the same cost center and account-level aggregation for comparison runs."
+}

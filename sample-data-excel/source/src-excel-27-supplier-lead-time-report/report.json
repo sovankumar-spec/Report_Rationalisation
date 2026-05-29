@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-27",
+  "name": "Supplier Lead Time Report",
+  "domain": "Operations",
+  "owner": "Procurement",
+  "usageFrequency": 37,
+  "description": "Measures supplier lead times from purchase order to goods receipt. Highlights reliability across suppliers and supports procurement planning and SLA discussions."
+}

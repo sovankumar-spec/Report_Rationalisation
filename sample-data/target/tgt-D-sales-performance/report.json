@@ -1,0 +1,8 @@
+{
+  "id": "tgt-D",
+  "name": "Sales Performance Analytics",
+  "domain": "Sales",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 67,
+  "description": "Enterprise sales KPI platform: deal volume, win rates, pipeline value, quota attainment, and product mix. Primary source for executive sales reviews."
+}

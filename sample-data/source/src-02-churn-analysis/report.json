@@ -1,0 +1,8 @@
+{
+  "id": "src-02",
+  "name": "Monthly Churn Analysis",
+  "domain": "Customer Success",
+  "owner": "Retention Analytics",
+  "usageFrequency": 35,
+  "description": "Tracks subscriber churn events and average tenure at time of churn. Key input for retention modeling and cohort analysis."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "tgt-looker-02-finance-hub",
+  "name": "Finance Hub",
+  "domain": "Finance",
+  "owner": "Marcus Webb",
+  "description": "Looker canonical Finance report. Governs P&L, budget, and margin KPIs across all cost centres. Authoritative reference for Finance reporting in the Looker estate.",
+  "usageFrequency": 38,
+  "platform": "Looker"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-02-revenue-pipeline-report",
+  "name": "Revenue Pipeline Report",
+  "domain": "Sales",
+  "owner": "Jordan Lee",
+  "description": "PowerBI pipeline report tracking revenue progress against forecast, deal-stage conversion, and win rate trends. Adds a forecast_accuracy KPI not yet present in the Looker reference — a consolidation gap to be filled.",
+  "usageFrequency": 11,
+  "platform": "PowerBI"
+}

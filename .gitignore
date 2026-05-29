@@ -1,0 +1,12 @@
+node_modules/
+dist/
+data/
+public/data/
+load.json
+*.generated.json
+.env
+.env.local
+*.log
+.DS_Store
+.vscode/
+.idea/

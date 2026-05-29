@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-13",
+  "name": "Benefits Enrollment Stats",
+  "domain": "Human Resources",
+  "owner": "HR Platform",
+  "usageFrequency": 0,
+  "description": "Enrollment counts and premium averages across benefit plans. Helps HR evaluate plan adoption and cost."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-27",
+  "name": "Debtor Exposure Rating",
+  "domain": "Risk",
+  "owner": "Risk Platform",
+  "usageFrequency": 0,
+  "description": "Assesses customer credit exposure by combining credit limits, utilization, and AR aging. Supports credit risk monitoring."
+}

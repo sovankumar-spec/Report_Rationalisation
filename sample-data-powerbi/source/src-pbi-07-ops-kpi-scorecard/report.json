@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-07-ops-kpi-scorecard",
+  "name": "Operations KPI Scorecard",
+  "domain": "Operations",
+  "owner": "Morgan Ellis",
+  "description": "PowerBI operations scorecard covering cycle time, utilisation, OEE, defect rate, incident count and units produced. Identical KPI set and schema to the Looker Operations Intelligence reference — ready for rationalization.",
+  "usageFrequency": 16,
+  "platform": "PowerBI"
+}

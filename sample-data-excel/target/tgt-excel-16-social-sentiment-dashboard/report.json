@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-16",
+  "name": "Social Sentiment Dashboard",
+  "domain": "Marketing",
+  "owner": "Marketing Platform",
+  "usageFrequency": 0,
+  "description": "Weekly social media sentiment and engagement trends by platform. Aggregates post volume, sentiment scores, and engagement counts."
+}

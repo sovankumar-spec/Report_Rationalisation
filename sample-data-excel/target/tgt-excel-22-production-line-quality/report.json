@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-22",
+  "name": "Production Line Quality",
+  "domain": "Operations",
+  "owner": "Operations Platform",
+  "usageFrequency": 0,
+  "description": "Measures production yield, inputs, outputs, and scrap by plant and product category. Key indicator of manufacturing quality."
+}

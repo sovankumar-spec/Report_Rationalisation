@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-37",
+  "name": "Deal Stage Velocity",
+  "domain": "Sales",
+  "owner": "Sales Ops",
+  "usageFrequency": 31,
+  "description": "Measures time opportunities spend in each sales stage and aggregate pipeline value. Helps sales operations identify bottlenecks and forecast deal progression."
+}

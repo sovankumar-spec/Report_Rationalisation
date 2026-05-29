@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-14",
+  "name": "Internal Mobility Tracker",
+  "domain": "Human Resources",
+  "owner": "Talent Management",
+  "usageFrequency": 21,
+  "description": "Tracks internal employee moves including promotions, transfers, and role changes. Supports talent mobility analytics and visibility into career progression patterns."
+}

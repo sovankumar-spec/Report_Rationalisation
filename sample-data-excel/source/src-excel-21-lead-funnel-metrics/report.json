@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-21",
+  "name": "Lead Funnel Metrics",
+  "domain": "Marketing",
+  "owner": "Demand Gen",
+  "usageFrequency": 31,
+  "description": "Tracks lead volume, qualification, and conversion to opportunities by source. Helps demand generation teams evaluate lead quality and source-level efficiency."
+}

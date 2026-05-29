@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-09-workforce-dashboard",
+  "name": "Workforce Dashboard",
+  "domain": "Operations",
+  "owner": "Casey Murphy",
+  "description": "PowerBI workforce report tracking headcount, attrition, employee engagement and training completion. People-analytics KPIs are not covered by the Looker Operations Intelligence reference — a dedicated Looker Workforce explore is required before this report can be retired.",
+  "usageFrequency": 10,
+  "platform": "PowerBI"
+}

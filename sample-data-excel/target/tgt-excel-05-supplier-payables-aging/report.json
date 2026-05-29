@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-05",
+  "name": "Supplier Payables Aging",
+  "domain": "Finance",
+  "owner": "Finance Platform",
+  "usageFrequency": 0,
+  "description": "Ages outstanding supplier payables to support cash management and vendor payment prioritization."
+}

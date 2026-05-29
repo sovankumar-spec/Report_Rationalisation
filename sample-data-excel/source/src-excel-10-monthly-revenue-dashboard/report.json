@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-10",
+  "name": "Monthly Revenue Dashboard",
+  "domain": "Finance",
+  "owner": "Revenue Operations",
+  "usageFrequency": 78,
+  "description": "Consolidates monthly gross and net revenue by product category with customer and order counts. Core report for finance and commercial leadership to track top-line performance."
+}

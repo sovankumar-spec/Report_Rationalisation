@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-06-cash-flow-monitor",
+  "name": "Cash Flow Monitor",
+  "domain": "Finance",
+  "owner": "Taylor Reeves",
+  "description": "PowerBI cash flow report tracking operating, investing and financing activities plus the cash conversion cycle. The Looker Finance Hub has no cash-flow measures — a dedicated Looker Cash Flow explore must be built before this report can be retired.",
+  "usageFrequency": 9,
+  "platform": "PowerBI"
+}

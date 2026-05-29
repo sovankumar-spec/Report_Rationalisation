@@ -1,0 +1,8 @@
+{
+  "id": "tgt-csv-C",
+  "name": "Network Operations Dashboard",
+  "domain": "Network Operations",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 88,
+  "description": "Reference network health platform. Covers latency, packet loss, uptime, bandwidth utilization, and alert volume per site and region."
+}

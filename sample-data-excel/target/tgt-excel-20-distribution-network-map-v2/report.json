@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-20",
+  "name": "Distribution Network Map V2",
+  "domain": "Operations",
+  "owner": "Logistics Platform",
+  "usageFrequency": 0,
+  "description": "Maps outbound shipment activity across warehouses and regions. Tracks shipment counts and total weight moved through the distribution network."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-C",
+  "name": "Network Operations Dashboard",
+  "domain": "Network Operations",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 85,
+  "description": "Production network health KPIs: latency, packet loss, uptime, bandwidth utilization, and alert volume by site and region. Feeds SLA reporting."
+}

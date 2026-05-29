@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-30",
+  "name": "Release Stability Report",
+  "domain": "Product",
+  "owner": "Engineering QA",
+  "usageFrequency": 28,
+  "description": "Reports crash counts and crash-free session rates by release. Used by engineering and QA to monitor release health and prioritize hotfixes."
+}

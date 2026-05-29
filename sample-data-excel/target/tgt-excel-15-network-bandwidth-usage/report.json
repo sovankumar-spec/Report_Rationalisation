@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-15",
+  "name": "Network Bandwidth Usage",
+  "domain": "IT",
+  "owner": "Network Ops",
+  "usageFrequency": 0,
+  "description": "Monitors average and peak network bandwidth consumption by subnet. Supports capacity planning and traffic analysis."
+}

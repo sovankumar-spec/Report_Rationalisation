@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-10",
+  "name": "Geographic Sales Summary",
+  "domain": "Finance",
+  "owner": "Finance Platform",
+  "usageFrequency": 0,
+  "description": "Summarizes sales performance by geographic region on a quarterly basis. Captures gross and net revenue with discount impact for regional comparison."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-31",
+  "name": "Seller Achievement Rollup",
+  "domain": "Sales",
+  "owner": "Sales Platform",
+  "usageFrequency": 0,
+  "description": "Rolls up sales rep performance including booked revenue, deal count, and quota attainment. Core sales productivity report."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-06",
+  "name": "Deal Funnel Analytics",
+  "domain": "Sales",
+  "owner": "Revenue Analytics",
+  "usageFrequency": 38,
+  "description": "Extended deal funnel view tracking core pipeline KPIs plus lead-to-opportunity conversion rate. Feeds RevOps weekly reporting."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-14",
+  "name": "Patch Compliance Rate",
+  "domain": "IT",
+  "owner": "IT Security",
+  "usageFrequency": 0,
+  "description": "Measures endpoint patch coverage by operating system. Reports compliance percentages to drive remediation prioritization."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-09",
+  "name": "Legal Contract Intelligence",
+  "domain": "Legal",
+  "owner": "Legal Operations",
+  "usageFrequency": 11,
+  "description": "Contract portfolio KPIs: active contract count, average contract value, renewal rate, and open dispute count. Feeds quarterly legal ops reviews."
+}

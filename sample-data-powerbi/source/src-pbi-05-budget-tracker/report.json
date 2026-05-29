@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-05-budget-tracker",
+  "name": "Budget Tracker",
+  "domain": "Finance",
+  "owner": "Chris Nguyen",
+  "description": "PowerBI budget monitoring report with P&L KPIs plus a CAPEX spend measure not yet tracked in the Looker Finance Hub. All other KPIs align to the reference — extend Looker with capex_spend to consolidate.",
+  "usageFrequency": 14,
+  "platform": "PowerBI"
+}

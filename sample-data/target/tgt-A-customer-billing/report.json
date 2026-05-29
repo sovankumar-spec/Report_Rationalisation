@@ -1,0 +1,8 @@
+{
+  "id": "tgt-A",
+  "name": "Customer Billing Analytics",
+  "domain": "Finance",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 72,
+  "description": "Unified billing analytics covering revenue, discounts, and customer volume by segment. Reference platform for all Finance revenue KPIs."
+}

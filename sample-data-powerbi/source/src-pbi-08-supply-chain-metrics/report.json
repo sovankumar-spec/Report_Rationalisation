@@ -1,0 +1,9 @@
+{
+  "id": "src-pbi-08-supply-chain-metrics",
+  "name": "Supply Chain Metrics",
+  "domain": "Operations",
+  "owner": "Blake Foster",
+  "description": "PowerBI supply chain report extending operational KPIs with supplier lead time. Core cycle time, utilisation, incident, defect and production measures align to the Looker Operations Intelligence reference — add supplier_lead_time to Looker to consolidate.",
+  "usageFrequency": 12,
+  "platform": "PowerBI"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-18",
+  "name": "Mailer Engagement Stats",
+  "domain": "Marketing",
+  "owner": "Marketing Platform",
+  "usageFrequency": 0,
+  "description": "Tracks email campaign engagement from sends through opens, clicks, and unsubscribes. Calculates open rates to assess campaign effectiveness."
+}

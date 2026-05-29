@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-07",
+  "name": "Campaign Performance Report",
+  "domain": "Marketing",
+  "owner": "Demand Generation",
+  "usageFrequency": 33,
+  "description": "Campaign-level performance KPIs: reach, engagement, click-through, conversion, and bounce rate. Used for weekly channel optimization reviews."
+}

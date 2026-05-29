@@ -1,0 +1,9 @@
+{
+  "id": "tgt-looker-03-ops-intelligence",
+  "name": "Operations Intelligence",
+  "domain": "Operations",
+  "owner": "Dana Kim",
+  "description": "Looker canonical Operations report. Governs cycle time, OEE, utilisation, defect, and incident KPIs across all facilities. Authoritative reference for Operations reporting in the Looker estate.",
+  "usageFrequency": 29,
+  "platform": "Looker"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-35",
+  "name": "Cross Sell Basket Analysis",
+  "domain": "Sales",
+  "owner": "Merchandising",
+  "usageFrequency": 23,
+  "description": "Identifies pairs of products frequently purchased together in the same order. Used by merchandising and sales to drive cross-sell strategy and bundle offers."
+}

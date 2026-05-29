@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-17",
+  "name": "Server Performance Dashboard",
+  "domain": "IT",
+  "owner": "Infrastructure",
+  "usageFrequency": 39,
+  "description": "Monitors CPU, memory utilization, and downtime across production and non-production servers. Used by infrastructure teams to identify capacity issues."
+}

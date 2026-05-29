@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-08",
+  "name": "Expense Reimbursement Summary",
+  "domain": "Finance",
+  "owner": "Finance Ops",
+  "usageFrequency": 24,
+  "description": "Aggregates employee expense reports by category and month with approved amounts. Supports policy oversight and trend analysis for travel and operational spending."
+}

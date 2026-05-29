@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-04",
+  "name": "Open Receivables View",
+  "domain": "Finance",
+  "owner": "Finance Platform",
+  "usageFrequency": 0,
+  "description": "Lists unpaid customer invoices with aging details. Tracks outstanding balances and days overdue to support collections activity."
+}

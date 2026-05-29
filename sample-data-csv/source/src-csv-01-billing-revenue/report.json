@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-01",
+  "name": "Billing Revenue Summary",
+  "domain": "Finance",
+  "owner": "Revenue Operations",
+  "usageFrequency": 44,
+  "description": "Core revenue roll-up: total revenue, average revenue per customer, and active customer count. Feeds weekly Finance close pack."
+}

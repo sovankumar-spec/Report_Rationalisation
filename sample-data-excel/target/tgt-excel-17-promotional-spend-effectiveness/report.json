@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-17",
+  "name": "Promotional Spend Effectiveness",
+  "domain": "Marketing",
+  "owner": "Marketing Platform",
+  "usageFrequency": 0,
+  "description": "Compares campaign budgets, actual spend, and attributed revenue. Measures customer acquisition efficiency across campaigns."
+}

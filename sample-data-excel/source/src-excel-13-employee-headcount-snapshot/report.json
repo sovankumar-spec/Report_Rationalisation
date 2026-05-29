@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-13",
+  "name": "Employee Headcount Snapshot",
+  "domain": "Human Resources",
+  "owner": "Workforce Planning",
+  "usageFrequency": 58,
+  "description": "Point-in-time headcount view across departments and employment types with average tenure. Used for workforce planning, org reporting, and budget reconciliation."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "src-03",
+  "name": "Network Performance KPIs",
+  "domain": "Network Operations",
+  "owner": "NOC Engineering",
+  "usageFrequency": 62,
+  "description": "Rolling 30-day view of latency, packet loss, uptime, and peak throughput per site. Feeds SLA compliance reporting and capacity planning."
+}

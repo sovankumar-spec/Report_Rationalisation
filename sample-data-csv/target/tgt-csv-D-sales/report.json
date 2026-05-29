@@ -1,0 +1,8 @@
+{
+  "id": "tgt-csv-D",
+  "name": "Sales Performance Analytics",
+  "domain": "Sales",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 69,
+  "description": "Reference sales KPI platform. Tracks total deals, won deal count, average deal value, total pipeline value, quota attainment, and win rate by territory."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-25",
+  "name": "Capability Uptake Analytics",
+  "domain": "Product",
+  "owner": "Product Platform",
+  "usageFrequency": 0,
+  "description": "Measures feature adoption including try rates, repeat usage, and 30-day active users. Identifies which capabilities gain traction post-launch."
+}

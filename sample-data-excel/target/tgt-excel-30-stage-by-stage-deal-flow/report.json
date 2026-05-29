@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-30",
+  "name": "Stage By Stage Deal Flow",
+  "domain": "Sales",
+  "owner": "Sales Platform",
+  "usageFrequency": 0,
+  "description": "Pipeline view showing opportunities entered, pipeline value, and average probability by stage. Supports sales forecasting."
+}

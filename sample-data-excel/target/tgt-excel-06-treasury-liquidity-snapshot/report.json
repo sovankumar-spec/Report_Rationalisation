@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-06",
+  "name": "Treasury Liquidity Snapshot",
+  "domain": "Finance",
+  "owner": "Finance Platform",
+  "usageFrequency": 0,
+  "description": "Point-in-time snapshot of bank account balances and interest earned. Supports treasury monitoring of liquidity positions across account types."
+}

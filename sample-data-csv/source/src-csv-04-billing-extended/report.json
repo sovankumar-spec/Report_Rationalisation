@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-04",
+  "name": "Billing Extended KPIs",
+  "domain": "Finance",
+  "owner": "FP&A",
+  "usageFrequency": 28,
+  "description": "Extended billing view adding revenue growth rate alongside core revenue KPIs. Used for QoQ trend analysis in quarterly business reviews."
+}

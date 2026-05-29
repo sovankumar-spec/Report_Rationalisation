@@ -1,0 +1,8 @@
+{
+  "id": "src-04",
+  "name": "Sales Pipeline Metrics",
+  "domain": "Sales",
+  "owner": "Sales Strategy & Analytics",
+  "usageFrequency": 41,
+  "description": "Opportunity funnel metrics by territory and quarter. Tracks deal volume, win rate, average deal value, and open pipeline value."
+}

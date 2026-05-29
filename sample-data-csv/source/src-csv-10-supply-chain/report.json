@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-10",
+  "name": "Supply Chain Operations",
+  "domain": "Supply Chain",
+  "owner": "SCM Analytics",
+  "usageFrequency": 22,
+  "description": "Inventory count, average supplier lead time, order fulfillment rate, and stockout frequency. Feeds procurement and logistics planning."
+}

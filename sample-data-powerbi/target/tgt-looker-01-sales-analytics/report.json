@@ -1,0 +1,9 @@
+{
+  "id": "tgt-looker-01-sales-analytics",
+  "name": "Sales Analytics",
+  "domain": "Sales",
+  "owner": "Priya Sharma",
+  "description": "Looker canonical Sales analytics report. Governs revenue, deal, pipeline, and quota KPIs across all sales channels. Acts as the single authoritative source for Sales reporting in the Looker estate.",
+  "usageFrequency": 42,
+  "platform": "Looker"
+}

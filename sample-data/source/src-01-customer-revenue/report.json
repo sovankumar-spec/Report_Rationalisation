@@ -1,0 +1,8 @@
+{
+  "id": "src-01",
+  "name": "Customer Revenue Summary",
+  "domain": "Finance",
+  "owner": "Revenue Operations",
+  "usageFrequency": 48,
+  "description": "Monthly revenue roll-up by customer segment from the legacy billing system. Used by Finance for executive dashboards and close reporting."
+}

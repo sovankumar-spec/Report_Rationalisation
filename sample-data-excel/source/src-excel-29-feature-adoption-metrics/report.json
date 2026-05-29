@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-29",
+  "name": "Feature Adoption Metrics",
+  "domain": "Product",
+  "owner": "Product Analytics",
+  "usageFrequency": 32,
+  "description": "Measures how many eligible users tried each feature and how many returned. Helps product managers evaluate feature stickiness and rollout success."
+}

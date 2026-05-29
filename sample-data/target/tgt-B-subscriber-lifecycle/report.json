@@ -1,0 +1,8 @@
+{
+  "id": "tgt-B",
+  "name": "Subscriber Lifecycle Dashboard",
+  "domain": "Customer Success",
+  "owner": "Enterprise BI Platform",
+  "usageFrequency": 58,
+  "description": "End-to-end subscriber lifecycle KPIs: churn, new subs, re-activation, and MRR. Single source of truth for Customer Success reporting."
+}

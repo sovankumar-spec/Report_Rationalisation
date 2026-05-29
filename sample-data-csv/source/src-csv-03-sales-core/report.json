@@ -1,0 +1,8 @@
+{
+  "id": "src-csv-03",
+  "name": "Sales Core Metrics",
+  "domain": "Sales",
+  "owner": "Sales Strategy & Analytics",
+  "usageFrequency": 57,
+  "description": "Core deal funnel KPIs: total deals, wins, average deal value, and open pipeline. Used for weekly sales team reviews."
+}

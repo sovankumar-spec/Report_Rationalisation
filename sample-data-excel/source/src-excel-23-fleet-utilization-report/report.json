@@ -1,0 +1,8 @@
+{
+  "id": "src-excel-23",
+  "name": "Fleet Utilization Report",
+  "domain": "Operations",
+  "owner": "Logistics Ops",
+  "usageFrequency": 26,
+  "description": "Summarizes monthly vehicle utilization, mileage, and fleet size by home depot and vehicle type. Used by logistics to optimize asset deployment."
+}

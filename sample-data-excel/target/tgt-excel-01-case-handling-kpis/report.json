@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-01",
+  "name": "Case Handling KPIs",
+  "domain": "Customer Service",
+  "owner": "Support Platform",
+  "usageFrequency": 0,
+  "description": "Tracks support ticket handling performance across categories. Measures resolution speed and SLA adherence to gauge service team effectiveness."
+}

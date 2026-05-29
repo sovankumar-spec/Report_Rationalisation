@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-11",
+  "name": "Staff Departure Patterns",
+  "domain": "Human Resources",
+  "owner": "HR Platform",
+  "usageFrequency": 0,
+  "description": "Analyzes employee terminations by department and reason. Captures tenure at exit and voluntary vs involuntary splits to identify attrition patterns."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-29",
+  "name": "Distributor Scorecard",
+  "domain": "Sales",
+  "owner": "Sales Platform",
+  "usageFrequency": 0,
+  "description": "Evaluates distributor channel performance including revenue, order volume, and discount behavior. Benchmarks distributors across regions."
+}

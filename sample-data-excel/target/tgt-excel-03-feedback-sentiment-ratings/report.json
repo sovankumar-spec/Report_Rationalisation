@@ -1,0 +1,8 @@
+{
+  "id": "tgt-excel-03",
+  "name": "Feedback Sentiment Ratings",
+  "domain": "Customer Service",
+  "owner": "Support Platform",
+  "usageFrequency": 0,
+  "description": "Combines CSAT survey scores with ticket categories to quantify customer satisfaction. Breaks down positive and negative response counts by support category."
+}
