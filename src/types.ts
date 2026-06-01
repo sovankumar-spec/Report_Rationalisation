@@ -1,6 +1,13 @@
 export type Decision = 'Migrate' | 'Consolidate' | 'Rationalize';
 export type Status = 'Pending' | 'Approved' | 'Overridden';
 
+export interface MetadataMapping {
+  id: string;
+  type: 'kpi' | 'column' | 'table' | 'dimension';
+  sourceValue: string;
+  targetValue: string;
+}
+
 export interface OverrideRecord {
   changedBy: string;
   changedAt: string;

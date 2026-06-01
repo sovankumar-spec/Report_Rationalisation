@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AlertCircle,
   BarChart3,
@@ -25,7 +25,7 @@ import {
   TrendingUp,
   X,
 } from 'lucide-react';
-import { Decision, DimRow, FullReport, QueryItem, TargetDetailReport, TargetReport } from './types';
+import { Decision, DimRow, FullReport, MetadataMapping, QueryItem, TargetDetailReport, TargetReport } from './types';
 import {
   FieldMapping,
   loadReportInventoryFromPaths,
@@ -149,6 +149,291 @@ function clientKpiGaps(src: FullReport, tgt: TargetDetailReport): string[] {
 
 function clientConfidence(pct: number) {
   return Math.round((0.40 + (pct / 100) * 0.55) * 100) / 100;
+}
+
+// ── Dynamic metadata remapping ────────────────────────────────────────────────
+
+type MappingType = MetadataMapping['type'];
+
+const MTYPE_LABELS: Record<MappingType, string> = {
+  kpi: 'KPI / Measure', column: 'Column', table: 'Table', dimension: 'Dimension',
+};
+
+function resolveViaMapping(type: MappingType, value: string, mappings: MetadataMapping[]): string {
+  return mappings.find(m => m.type === type && m.sourceValue === value)?.targetValue ?? value;
+}
+
+function computeOverlapWithMappings(
+  src: FullReport,
+  tgt: TargetDetailReport,
+  mappings: MetadataMapping[],
+): number {
+  const res = (t: MappingType, v: string) => resolveViaMapping(t, v, mappings);
+  const ratio = (s: Set<string>, tset: Set<string>) =>
+    s.size ? [...s].filter(v => tset.has(v)).length / s.size : 0;
+
+  const srcAliases = new Set(src.allKpis.map(k => res('kpi',       k.alias)));
+  const tgtAliases = new Set(tgt.kpis.map(k => k.alias));
+  const srcCols    = new Set(src.allKpis.map(k => res('column',    k.column)));
+  const tgtCols    = new Set(tgt.kpis.map(k => k.column));
+  const srcTables  = new Set(src.allTables.map(t => normTable(res('table',     t))));
+  const tgtTables  = new Set(tgt.allTables.map(normTable));
+  const srcDims    = new Set(src.allDimensions.map(d => res('dimension', d)));
+  const tgtDims    = new Set(tgt.allDimensions);
+
+  const aliasScore = ratio(srcAliases, tgtAliases);
+  const colScore   = ratio(srcCols,    tgtCols);
+  const tableScore = ratio(srcTables,  tgtTables);
+  const dimScore   = ratio(srcDims,    tgtDims);
+
+  const raw = srcDims.size > 0
+    ? aliasScore * 0.40 + colScore * 0.20 + tableScore * 0.15 + dimScore * 0.25
+    : aliasScore * 0.50 + colScore * 0.30 + tableScore * 0.20;
+
+  return Math.min(100, Math.round(raw * 100));
+}
+
+function recomputeDecisionsFromMappings(
+  sources:    FullReport[],
+  targets:    TargetDetailReport[],
+  mappings:   MetadataMapping[],
+  thresholds: ThresholdConfig,
+  prev:       RationalizationDecision[],
+): RationalizationDecision[] {
+  return sources.map(src => {
+    const existing = prev.find(d => d.sourceId === src.id);
+    if (existing?.source === 'manual') return existing;
+
+    const ranked = targets
+      .map(tgt => ({ tgt, overlap: computeOverlapWithMappings(src, tgt, mappings) }))
+      .sort((a, b) => b.overlap - a.overlap);
+
+    const best    = ranked[0] ?? null;
+    const overlap = best?.overlap ?? 0;
+    const decision = decisionFromOverlap(overlap, thresholds);
+    const kpiGaps  = best
+      ? [...new Set(src.allKpis.map(k => k.alias))].filter(a =>
+          !best.tgt.kpis.some(k => k.alias === resolveViaMapping('kpi', a, mappings)))
+      : [];
+
+    return {
+      sourceId:        src.id,
+      sourceName:      src.name,
+      domain:          existing?.domain ?? src.domain,
+      targetId:        best?.tgt.id   ?? null,
+      targetName:      best?.tgt.name ?? null,
+      overlapPercent:  overlap,
+      decision,
+      confidenceScore: clientConfidence(overlap),
+      rationale: mappings.length > 0
+        ? `${overlap}% overlap with "${best?.tgt.name ?? '—'}" — recomputed applying ${mappings.length} metadata mapping(s).`
+        : (existing?.rationale ?? src.analysisExplanation),
+      kpiGaps,
+      status:         existing?.status ?? 'Pending',
+      source:         'analysis',
+      fieldMappings:  existing?.fieldMappings,
+    };
+  });
+}
+
+// Simple Levenshtein for fuzzy auto-suggest
+function lev(a: string, b: string): number {
+  const m = a.length, n = b.length;
+  const row = Array.from({ length: n + 1 }, (_, i) => i);
+  for (let i = 1; i <= m; i++) {
+    let prev = i;
+    for (let j = 1; j <= n; j++) {
+      const cur = a[i-1] === b[j-1] ? row[j-1] : 1 + Math.min(row[j-1], row[j], prev);
+      row[j-1] = prev; prev = cur;
+    }
+    row[n] = prev;
+  }
+  return row[n];
+}
+
+const STRIP_PFX = /^(fact_|dim_|tgt_|ref_|total_|num_|cnt_|is_|has_|ftr_|vz_|src_)/;
+
+function suggestBestMatch(source: string, vocab: string[]): string | null {
+  if (!vocab.length) return null;
+  const sl = source.toLowerCase();
+  const exact = vocab.find(v => v.toLowerCase() === sl);
+  if (exact) return exact;
+  const stripped = sl.replace(STRIP_PFX, '');
+  const stripMatch = vocab.find(v => v.toLowerCase().replace(STRIP_PFX, '') === stripped);
+  if (stripMatch) return stripMatch;
+  const best = vocab
+    .map(v => { const vl = v.toLowerCase(); const max = Math.max(sl.length, vl.length); return { v, sim: max ? 1 - lev(sl, vl) / max : 1 }; })
+    .sort((a, b) => b.sim - a.sim)[0];
+  return best.sim >= 0.72 ? best.v : null;
+}
+
+function collectSourceVocab(sources: FullReport[], type: MappingType) {
+  const map = new Map<string, number>();
+  for (const s of sources) {
+    const vals = type === 'kpi'    ? [...new Set(s.allKpis.map(k => k.alias))]
+               : type === 'column' ? [...new Set(s.allKpis.map(k => k.column))]
+               : type === 'table'  ? s.allTables
+               : s.allDimensions;
+    for (const v of vals) map.set(v, (map.get(v) ?? 0) + 1);
+  }
+  return [...map.entries()].map(([value, count]) => ({ value, count }))
+    .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value));
+}
+
+function collectTargetVocab(targets: TargetDetailReport[], type: MappingType): string[] {
+  const s = new Set<string>();
+  for (const t of targets) {
+    const vals = type === 'kpi'    ? t.kpis.map(k => k.alias)
+               : type === 'column' ? t.kpis.map(k => k.column)
+               : type === 'table'  ? t.allTables
+               : t.allDimensions;
+    for (const v of vals) s.add(v);
+  }
+  return [...s].sort();
+}
+
+function MetadataMappingPanel({
+  sources, targets, mappings, changedCount, onChange,
+}: {
+  sources:      FullReport[];
+  targets:      TargetDetailReport[];
+  mappings:     MetadataMapping[];
+  changedCount: number;
+  onChange:     (m: MetadataMapping[]) => void;
+}) {
+  const [open, setOpen]             = useState(false);
+  const [activeType, setActiveType] = useState<MappingType>('kpi');
+
+  const srcVocab = useMemo(() => collectSourceVocab(sources, activeType), [sources, activeType]);
+  const tgtVocab = useMemo(() => collectTargetVocab(targets, activeType), [targets, activeType]);
+
+  const getMap = (v: string) =>
+    mappings.find(m => m.type === activeType && m.sourceValue === v)?.targetValue ?? '';
+
+  const setMap = (sourceValue: string, targetValue: string) =>
+    onChange(targetValue.trim()
+      ? [
+          ...mappings.filter(m => !(m.type === activeType && m.sourceValue === sourceValue)),
+          { id: `${activeType}:${sourceValue}`, type: activeType, sourceValue, targetValue: targetValue.trim() },
+        ]
+      : mappings.filter(m => !(m.type === activeType && m.sourceValue === sourceValue)));
+
+  const suggestAll = () => {
+    const kept: MetadataMapping[] = mappings.filter(m => m.type !== activeType);
+    for (const { value } of srcVocab) {
+      const cur = getMap(value);
+      if (cur) {
+        kept.push({ id: `${activeType}:${value}`, type: activeType, sourceValue: value, targetValue: cur });
+      } else {
+        const sug = suggestBestMatch(value, tgtVocab);
+        if (sug) kept.push({ id: `${activeType}:${value}`, type: activeType, sourceValue: value, targetValue: sug });
+      }
+    }
+    onChange(kept);
+  };
+
+  if (sources.length === 0) return null;
+
+  return (
+    <section className="panel mapping-panel">
+      <div className="panel-heading mapping-toggle" onClick={() => setOpen(v => !v)} style={{ cursor: 'pointer' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <ChevronDown size={14} style={{ transform: open ? 'rotate(180deg)' : undefined, transition: 'transform 0.2s' }} />
+          <div>
+            <p className="panel-kicker">Dynamic reprocessing</p>
+            <h2>Metadata remapping</h2>
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          {mappings.length > 0 && (
+            <span className="mapping-badge">{mappings.length} mapping{mappings.length !== 1 ? 's' : ''} active</span>
+          )}
+          {changedCount > 0 && (
+            <span className="mapping-badge reclassified">↑ {changedCount} reclassified</span>
+          )}
+        </div>
+      </div>
+
+      {open && (
+        <div className="mapping-body">
+          {/* Type tabs */}
+          <div className="mapping-type-bar">
+            {(Object.keys(MTYPE_LABELS) as MappingType[]).map(t => {
+              const n = mappings.filter(m => m.type === t).length;
+              return (
+                <button
+                  key={t}
+                  className={classNames('mapping-type-btn', activeType === t && 'active')}
+                  onClick={() => setActiveType(t)}
+                >
+                  {MTYPE_LABELS[t]}
+                  {n > 0 && <span className="mapping-type-dot">{n}</span>}
+                </button>
+              );
+            })}
+            <button className="mapping-suggest-all-btn" onClick={suggestAll} title="Auto-suggest best matches for all unmapped source terms">
+              <Sparkles size={11} /> Auto-suggest all
+            </button>
+          </div>
+
+          {srcVocab.length === 0 ? (
+            <p className="panel-empty-note">No {MTYPE_LABELS[activeType].toLowerCase()} terms found in source reports.</p>
+          ) : (
+            <div className="mapping-grid">
+              <div className="mapping-grid-hdr">
+                <span>Source {MTYPE_LABELS[activeType]}</span>
+                <span>Reports</span>
+                <span></span>
+                <span>Maps to (target value)</span>
+                <span>Status</span>
+              </div>
+              {srcVocab.map(({ value, count }) => {
+                const mapped     = getMap(value);
+                const directHit  = tgtVocab.includes(value);
+                const mappedHit  = mapped ? tgtVocab.includes(mapped) : false;
+                const sug        = !mapped && !directHit ? suggestBestMatch(value, tgtVocab) : null;
+                const cls        = mapped ? (mappedHit ? 'ok' : 'warn') : directHit ? 'direct' : 'gap';
+                const label      = mapped
+                  ? (mappedHit ? '✓ found'    : '✗ missing')
+                  : directHit ? '✓ direct' : '— no match';
+                return (
+                  <div key={value} className={`mapping-row ${cls}`}>
+                    <span className="mapping-src-val">{value}</span>
+                    <span className="mapping-rpt-count">{count}×</span>
+                    <span className="mapping-arr">→</span>
+                    <div className="mapping-tgt-cell">
+                      <select
+                        className="mapping-select"
+                        value={mapped}
+                        onChange={e => setMap(value, e.target.value)}
+                      >
+                        <option value="">— no remapping —</option>
+                        {tgtVocab.map(tv => <option key={tv} value={tv}>{tv}</option>)}
+                      </select>
+                      {sug && (
+                        <button className="mapping-sug-chip" onClick={() => setMap(value, sug)} title={`Apply: "${sug}"`}>
+                          <Sparkles size={9} /> {sug}
+                        </button>
+                      )}
+                    </div>
+                    <span className={`mapping-status-chip ${cls}`}>{label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {mappings.filter(m => m.type === activeType).length > 0 && (
+            <div className="mapping-footer">
+              <button className="mapping-clear-btn" onClick={() => onChange(mappings.filter(m => m.type !== activeType))}>
+                Clear {MTYPE_LABELS[activeType]} mappings
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
 }
 
 // Provenance badge — surfaces "where did this data come from"
@@ -1062,6 +1347,9 @@ function DashboardView({
   onRemap,
   isLoading,
   loadError,
+  metadataMappings,
+  onMappingsChange,
+  mappingChangedCount,
 }: {
   inventory: ReportInventory | null;
   decisions: RationalizationDecision[];
@@ -1071,6 +1359,9 @@ function DashboardView({
   onRemap: (sourceId: string) => void;
   isLoading: boolean;
   loadError: string | null;
+  metadataMappings: MetadataMapping[];
+  onMappingsChange: (m: MetadataMapping[]) => void;
+  mappingChangedCount: number;
 }) {
   const allSources = inventory?.sources ?? [];
   const allTargets = inventory?.targets ?? [];
@@ -1161,6 +1452,15 @@ function DashboardView({
 
       {/* Threshold configuration panel */}
       <ThresholdPanel thresholds={thresholds} onChange={onThresholdChange} />
+
+      {/* Dynamic metadata remapping */}
+      <MetadataMappingPanel
+        sources={allSources}
+        targets={allTargets}
+        mappings={metadataMappings}
+        changedCount={mappingChangedCount}
+        onChange={onMappingsChange}
+      />
 
       {/* Domain filter bar — multi-select, only shown when data is loaded */}
       {allSources.length > 0 && !isLoading && (
@@ -3351,6 +3651,16 @@ export default function App() {
   const [overrideSourceId, setOverrideSourceId]   = useState<string | null>(null);
   const [remapSourceId,    setRemapSourceId]       = useState<string | null>(null);
   const [thresholds, setThresholds]               = useState<ThresholdConfig>(DEFAULT_THRESHOLDS);
+  const [metadataMappings, setMetadataMappings]   = useState<MetadataMapping[]>([]);
+  const [baseDecisions, setBaseDecisions]         = useState<RationalizationDecision[]>([]);
+
+  // Refs so the mapping auto-recompute effect captures current values without re-triggering.
+  const inventoryRef     = useRef(inventory);
+  const thresholdsRef    = useRef(thresholds);
+  const baseDecisionsRef = useRef(baseDecisions);
+  inventoryRef.current     = inventory;
+  thresholdsRef.current    = thresholds;
+  baseDecisionsRef.current = baseDecisions;
 
   // When thresholds change, recompute the decision band for all non-manual decisions.
   // Overlap %, target mapping, rationale, and confidence are NOT changed — only the band label.
@@ -3361,6 +3671,33 @@ export default function App() {
       return { ...d, decision: decisionFromOverlap(d.overlapPercent, thresholds) };
     }));
   }, [thresholds, inventory]);
+
+  // Auto-recompute all analysis decisions when metadata mappings change (400 ms debounce).
+  // Manual overrides (source === 'manual') are always preserved.
+  useEffect(() => {
+    const handle = setTimeout(() => {
+      const inv = inventoryRef.current;
+      if (!inv) return;
+      if (metadataMappings.length === 0) {
+        const base = baseDecisionsRef.current;
+        if (base.length > 0) setDecisions(base);
+        return;
+      }
+      setDecisions(prev =>
+        recomputeDecisionsFromMappings(inv.sources, inv.targets, metadataMappings, thresholdsRef.current, prev)
+      );
+    }, 400);
+    return () => clearTimeout(handle);
+  }, [metadataMappings]);
+
+  // Count decisions that changed classification relative to the server-enriched baseline.
+  const mappingChangedCount = useMemo(() =>
+    baseDecisions.length === 0 ? 0 :
+    decisions.filter(d => {
+      const b = baseDecisions.find(b => b.sourceId === d.sourceId);
+      return b && b.decision !== d.decision;
+    }).length,
+  [decisions, baseDecisions]);
 
   const handleIntakeApply = useCallback(async (payload: IntakePayload) => {
     setPhase('loading');
@@ -3416,12 +3753,16 @@ export default function App() {
       }
       setPhaseTimings(prev => ({ ...prev, analysisCompletedAt: analysisFinishedAt }));
       setPhase('ready');
+      // Capture the enriched decisions as the baseline for mapping-change comparison.
+      setDecisions(final => { setBaseDecisions(final); return final; });
+      setMetadataMappings([]);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Failed to load reports.';
       setLoadError(msg);
       setPhase('intake');
       setPhaseTimings({});
       setDecisions([]);
+      setBaseDecisions([]);
     }
   }, []);
 
@@ -3472,6 +3813,9 @@ export default function App() {
           onRemap={setRemapSourceId}
           isLoading={phase === 'loading'}
           loadError={loadError}
+          metadataMappings={metadataMappings}
+          onMappingsChange={setMetadataMappings}
+          mappingChangedCount={mappingChangedCount}
         />
       )}
       {activeTab === 'source' && (
